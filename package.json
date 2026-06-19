@@ -7,7 +7,7 @@
   "license": "MIT",
   "engines": { "vscode": "^1.60.0" },
   "categories": ["Themes"],
-  "keywords": ["theme", "dark", "light", "orange", "synthwave", "ember", "neon"],
+  "keywords": ["theme", "dark", "light", "orange", "synthwave", "ember", "nixie", "amber", "neon"],
   "repository": {
     "type": "git",
     "url": "https://github.com/shchun/precipi-vscode-themes"
@@ -27,6 +27,11 @@
         "label": "Precipi Ember Dark",
         "uiTheme": "vs-dark",
         "path": "./themes/precipi-ember-dark-color-theme.json"
+      },
+      {
+        "label": "Precipi Nixie Tube",
+        "uiTheme": "vs-dark",
+        "path": "./themes/precipi-nixie-tube-color-theme.json"
       }
     ]
   }
