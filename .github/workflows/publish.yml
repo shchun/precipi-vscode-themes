@@ -1,0 +1,54 @@
+name: Publish to Marketplace
+
+# Manual trigger only — run from the Actions tab via the "Run workflow" button.
+on:
+  workflow_dispatch:
+    inputs:
+      release:
+        description: "Version bump"
+        type: choice
+        required: true
+        default: patch
+        options:
+          - patch   # 1.0.0 -> 1.0.1
+          - minor   # 1.0.0 -> 1.1.0
+          - major   # 1.0.0 -> 2.0.0
+          - none    # publish current package.json version as-is
+
+permissions:
+  contents: write   # needed to push the version bump commit/tag back
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install vsce
+        run: npm install -g @vscode/vsce
+
+      - name: Configure git (for version bump commit)
+        if: ${{ inputs.release != 'none' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Publish (with version bump)
+        if: ${{ inputs.release != 'none' }}
+        run: vsce publish ${{ inputs.release }} --no-dependencies -p "$VSCE_PAT"
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+
+      - name: Publish (no bump)
+        if: ${{ inputs.release == 'none' }}
+        run: vsce publish --no-dependencies -p "$VSCE_PAT"
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+
+      - name: Push version bump commit and tag
+        if: ${{ inputs.release != 'none' }}
+        run: git push --follow-tags
