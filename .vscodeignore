@@ -1,3 +1,8 @@
 .vscode/**
 .vscodeignore
+.gitignore
+.env
+.env.example
 *.vsix
+.claude/**
+scripts/**

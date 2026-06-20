@@ -5,9 +5,14 @@
   "version": "1.0.0",
   "publisher": "precipi",
   "license": "MIT",
+  "icon": "icon.png",
   "engines": { "vscode": "^1.60.0" },
+  "scripts": {
+    "package": "node scripts/deploy.mjs --package",
+    "deploy": "node scripts/deploy.mjs"
+  },
   "categories": ["Themes"],
-  "keywords": ["theme", "dark", "light", "orange", "synthwave", "ember", "nixie", "amber", "neon"],
+  "keywords": ["theme", "dark", "light", "orange", "synthwave", "solar", "emerald", "green", "amber", "neon"],
   "repository": {
     "type": "git",
     "url": "https://github.com/shchun/precipi-vscode-themes"
@@ -24,14 +29,29 @@
         "path": "./themes/precipi-synthwave-light-color-theme.json"
       },
       {
-        "label": "Precipi Ember Dark",
+        "label": "Precipi Synthwave Dark",
         "uiTheme": "vs-dark",
-        "path": "./themes/precipi-ember-dark-color-theme.json"
+        "path": "./themes/precipi-synthwave-dark-color-theme.json"
       },
       {
-        "label": "Precipi Nixie Tube",
+        "label": "Precipi Solar Light",
+        "uiTheme": "vs",
+        "path": "./themes/precipi-solar-light-color-theme.json"
+      },
+      {
+        "label": "Precipi Solar Dark",
         "uiTheme": "vs-dark",
-        "path": "./themes/precipi-nixie-tube-color-theme.json"
+        "path": "./themes/precipi-solar-dark-color-theme.json"
+      },
+      {
+        "label": "Precipi Emerald Light",
+        "uiTheme": "vs",
+        "path": "./themes/precipi-emerald-light-color-theme.json"
+      },
+      {
+        "label": "Precipi Emerald Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/precipi-emerald-dark-color-theme.json"
       }
     ]
   }
